@@ -354,8 +354,37 @@
   .demo-caption{
     padding: 18px 22px;
   }
-  .demo-caption h3{ font-size: 1rem; margin-bottom: 4px; }
+  .demo-caption h3{ font-size: 1rem; margin-bottom: 8px; }
   .demo-caption p{ color: var(--muted); font-size: 0.9rem; }
+  .demo-caption .feature-label{
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+  }
+  .demo-caption ul.feature-list{
+    list-style: none;
+    padding: 0;
+    margin: 0 0 8px 0;
+  }
+  .demo-caption ul.feature-list li{
+    color: var(--muted);
+    font-size: 0.88rem;
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 4px;
+  }
+  .demo-caption ul.feature-list li::before{
+    content: "•";
+    color: var(--mint);
+    position: absolute;
+    left: 0;
+  }
+  .demo-caption .feature-more{
+    color: var(--violet);
+    font-size: 0.85rem;
+    font-style: italic;
+  }
 
   /* PROJECTS — building state */
   .build-card{
@@ -605,8 +634,20 @@ Nyxari.<span class="c3">goal</span>   = <span class="c4">"software engineer"</sp
 <script>
   // ---- Add a new demo clip by adding a line here, then upload the matching file to /videos ----
   var demoClips = [
-    { src: 'videos/demo1.mp4', title: 'Script demo 1', description: 'A short clip of one of my Luau scripts running in Roblox Studio.' }
-    // { src: 'videos/demo2.mp4', title: 'Script demo 2', description: 'Description of what this one shows.' },
+    {
+      src: 'videos/demo1.mp4',
+      title: 'Phone Operating System',
+      features: [
+        'Custom Home Screen',
+        'Lock Screen',
+        'Boot & Shutdown Sequence',
+        'Notes app',
+        'Detailed Settings App',
+        'Calculator'
+      ],
+      more: 'and more features to come!'
+    }
+    // { src: 'videos/demo2.mp4', title: 'Script demo 2', features: ['Feature 1', 'Feature 2'], more: 'and more features to come!' },
   ];
 
   (function(){
@@ -616,12 +657,25 @@ Nyxari.<span class="c3">goal</span>   = <span class="c4">"software engineer"</sp
     demoClips.forEach(function(clip, i){
       var card = document.createElement('div');
       card.className = 'demo-card';
+
+      var featureListHtml = '';
+      if (clip.features && clip.features.length) {
+        featureListHtml = '<div class="feature-label">Features</div><ul class="feature-list">' +
+          clip.features.map(function(f){ return '<li>' + f + '</li>'; }).join('') +
+          '</ul>';
+        if (clip.more) {
+          featureListHtml += '<div class="feature-more">' + clip.more + '</div>';
+        }
+      } else if (clip.description) {
+        featureListHtml = '<p>' + clip.description + '</p>';
+      }
+
       card.innerHTML =
         '<div class="demo-video-wrap">' +
           '<video controls preload="metadata"><source src="' + clip.src + '" type="video/mp4"></video>' +
           '<div class="demo-empty"><div class="play-icon">▶</div><span>No demo uploaded yet — check back soon</span></div>' +
         '</div>' +
-        '<div class="demo-caption"><h3>' + clip.title + '</h3><p>' + clip.description + '</p></div>';
+        '<div class="demo-caption"><h3>' + clip.title + '</h3>' + featureListHtml + '</div>';
 
       var video = card.querySelector('video');
       var empty = card.querySelector('.demo-empty');
