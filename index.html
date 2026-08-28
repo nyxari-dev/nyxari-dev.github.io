@@ -409,6 +409,58 @@
   .build-card h3{ font-size: 1.15rem; margin-bottom: 10px; }
   .build-card p{ color: var(--muted); max-width: 460px; margin: 0 auto; }
 
+  /* PROJECTS — playable game card */
+  .project-list{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .game-card{
+    background: var(--panel);
+    border: 1px solid var(--panel-line);
+    border-radius: 8px;
+    padding: 26px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .game-card .game-info{ flex: 1 1 280px; }
+  .game-card .game-eyebrow{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--mint);
+    margin-bottom: 10px;
+  }
+  .game-card .game-eyebrow .pulse{
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--mint);
+    box-shadow: 0 0 0 0 rgba(47,230,176,0.6);
+    animation: pulse 2s infinite;
+  }
+  .game-card h3{ font-size: 1.15rem; margin-bottom: 8px; }
+  .game-card p{ color: var(--muted); font-size: 0.92rem; max-width: 440px; }
+  .play-btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--violet);
+    color: #14051F;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 12px 22px;
+    border-radius: 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .play-btn:hover{ color: #14051F; opacity: 0.88; }
+
   /* CONTACT */
   .contact-grid{
     display: flex;
@@ -489,6 +541,9 @@
     .demo-gallery{ grid-template-columns: 1fr; }
 
     .contact-link{ flex: 1 1 100%; }
+
+    .game-card{ padding: 22px; }
+    .play-btn{ width: 100%; justify-content: center; }
   }
 
   @media (max-width: 400px){
@@ -598,10 +653,20 @@ Nyxari.<span class="c3">goal</span>   = <span class="c4">"software engineer"</sp
       <span class="path">04</span>
       <h2>Projects</h2>
     </div>
-    <div class="build-card">
-      <div class="icon-row"><span></span><span></span><span></span></div>
-      <h3>First builds are loading</h3>
-      <p>Nothing's shipped yet..but it's on the way. Check back soon for the games im making in roblox studio.</p>
+    <div class="project-list">
+      <div class="game-card">
+        <div class="game-info">
+          <div class="game-eyebrow"><span class="pulse"></span>Live on Roblox</div>
+          <h3>Nyx's Scripts Showcase</h3>
+          <p>A playable place where every script above lives in the actual game. Try the phone, the shop, the sprint system, and more for yourself:3.</p>
+        </div>
+        <a class="play-btn" href="https://www.roblox.com/games/100800167161195/Nyxs-Scripts-Showcase" target="_blank" rel="noopener">▶ Play on Roblox</a>
+      </div>
+      <div class="build-card">
+        <div class="icon-row"><span></span><span></span><span></span></div>
+        <h3>More builds are loading</h3>
+        <p>Nothing's shipped yet..but it's on the way. Check back soon for the next games im making in roblox studio.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -660,7 +725,7 @@ Nyxari.<span class="c3">goal</span>   = <span class="c4">"software engineer"</sp
         'Tap to unlock Unlock Lockscreen',
         'Full Shutdown Flow',
         'Notes App',
-        'In-Depth Settings Menu',
+        'In Depth Settings Menu',
         'Working Calculator',
         'Interactive Dock'
       ],
